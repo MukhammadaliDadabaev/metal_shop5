@@ -28,11 +28,6 @@ class ColorController extends Controller
         return redirect()->route('admin.color.index');
     }
 
-    public function show(Color $color)
-    {
-        return view('admin.color.show', compact('color'));
-    }
-
     public function edit(Color $color)
     {
         return view('admin.color.edit', compact('color'));

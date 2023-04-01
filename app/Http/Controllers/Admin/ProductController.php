@@ -63,11 +63,6 @@ class ProductController extends Controller
         return redirect()->route('admin.product.index');
     }
 
-    public function show(Product $product)
-    {
-        return view('admin.product.show', compact('product'));
-    }
-
     public function edit(Product $product)
     {
         return view('admin.product.edit', compact('product'));

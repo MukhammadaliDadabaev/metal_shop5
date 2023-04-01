@@ -31,11 +31,6 @@ class UserController extends Controller
         return redirect()->route('admin.user.index');
     }
 
-    public function show(User $user)
-    {
-        return view('admin.user.show', compact('user'));
-    }
-
     public function edit(User $user)
     {
         return view('admin.user.edit', compact('user'));

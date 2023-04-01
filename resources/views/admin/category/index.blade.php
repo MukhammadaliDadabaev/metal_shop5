@@ -46,13 +46,15 @@
                                 </div>
                             </div>
                             <!-- /.card-header -->
+                            @if(count($categories))
                             <div class="card-body table-responsive p-0">
-                                <table class="table table-hover text-nowrap">
+                                <table class="table table-bordered table-hover text-nowrap border">
                                     <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Sarlavha</th>
                                         <th>Slug</th>
+                                        <th>Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -61,25 +63,20 @@
                                             <td>{{ $category->id }}</td>
                                             <td>{{ $category->title }}</td>
                                             <td>{{ $category->slug }}</td>
-{{--                                            <td>--}}
-{{--                                                <img src="{{ Storage::url($category->card_image) }}" height="50px" width="60px"--}}
-{{--                                                     style="border-radius: 50%" alt="IMAGE">--}}
-{{--                                            </td>--}}
 
-                                            <td><a class="text-gray-dark"
-                                                   href="{{ route('admin.category.show', $category) }}"><i
-                                                        class="far fa-eye"></i></a>
-                                            </td>
-                                            <td><a class="text-success"
-                                                   href="{{ route('admin.category.edit', $category) }}"><i
-                                                        class="fas fa-pencil-alt"></i></a>
-                                            </td>
                                             <td>
+{{--                                                <a class="btn btn-dark btn-sm"--}}
+{{--                                                   href="{{ route('admin.category.show', $category) }}"><i--}}
+{{--                                                        class="far fa-eye"></i></a>--}}
+                                            <a class="btn btn-info btn-sm float-left mr-2"
+                                                   href="{{ route('admin.category.edit', $category) }}">
+                                                    <i class="fas fa-pencil-alt"></i></a>
+
                                                 <form action="{{ route('admin.category.destroy', $category) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="border-0 bg-transparent">
-                                                        <i class="fas fa-trash-alt text-danger" role="button"></i>
+                                                    <button type="submit"  class="btn btn-danger btn-sm" onclick="return confirm('Подтвердие удаление')">
+                                                        <i class="fas fa-trash-alt" role="button"></i>
                                                     </button>
                                                 </form>
                                             </td>
@@ -88,8 +85,12 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <!-- /.card-body -->
+                             <!-- /.card-body -->
+                            @else
+                            <h1 class="py-3 text-danger text-center">Category Xozircha yo'q...❌</h1>
+                            @endif
                         </div>
+                        {{ $categories->links() }}
                     </div>
                 </div>
             </div><!-- /.container-fluid -->

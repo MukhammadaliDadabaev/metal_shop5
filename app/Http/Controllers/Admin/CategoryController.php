@@ -12,7 +12,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(2);
         return view('admin.category.index', compact('categories'));
     }
 
@@ -27,11 +27,6 @@ class CategoryController extends Controller
         Category::firstOrCreate($data);
 
         return redirect()->route('admin.category.index');
-    }
-
-    public function show(Category $category)
-    {
-        return view('admin.category.show', compact('category'));
     }
 
     public function edit(Category $category)

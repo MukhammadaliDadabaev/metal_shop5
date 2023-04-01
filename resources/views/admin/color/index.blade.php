@@ -47,12 +47,13 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap">
+                            <table class="table table-bordered table-hover text-nowrap">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Slug</th>
                                     <th>Ranglar</th>
+                                    <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -65,20 +66,20 @@
                                                 style="width: 17px; height: 17px; background: {{ '#'. $color->title }}"></div>
                                         </td>
 
-                                        <td><a class="text-gray-dark"
-                                               href="{{ route('admin.color.show', $color) }}"><i
-                                                    class="far fa-eye"></i></a>
-                                        </td>
-                                        <td><a class="text-success"
-                                               href="{{ route('admin.color.edit', $color) }}"><i
-                                                    class="fas fa-pencil-alt"></i></a>
-                                        </td>
                                         <td>
+{{--                                            <a class="btn btn-dark btn-sm"--}}
+{{--                                               href="{{ route('admin.color.show', $color) }}"><i--}}
+{{--                                                    class="far fa-eye"></i></a>--}}
+
+                                            <a class="btn btn-info btn-sm float-left mr-2"
+                                               href="{{ route('admin.color.edit', $color) }}">
+                                                <i class="fas fa-pencil-alt"></i></a>
+
                                             <form action="{{ route('admin.color.destroy', $color) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="border-0 bg-transparent">
-                                                    <i class="fas fa-trash-alt text-danger" role="button"></i>
+                                                <button type="submit"  class="btn btn-danger btn-sm" onclick="return confirm('Подтвердие удаление')">
+                                                    <i class="fas fa-trash-alt" role="button"></i>
                                                 </button>
                                             </form>
                                         </td>
