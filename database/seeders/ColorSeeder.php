@@ -16,13 +16,16 @@ class ColorSeeder extends Seeder
     public function run()
     {
         Color::create([
-            'title' => '040404'
+            'title' => '040404',
+             'slug' => 'Black'
         ]);
         Color::create([
-            'title' => 'A67F21'
+            'title' => 'A67F21',
+            'slug' => 'Orange'
         ]);
         Color::create([
-            'title' => 'C29142'
+            'title' => 'C29142',
+            'slug' => 'Blue'
         ]);
     }
 }

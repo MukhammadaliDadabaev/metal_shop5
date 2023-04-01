@@ -52,6 +52,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Sarlavha</th>
+                                        <th>Slug</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -59,6 +60,7 @@
                                         <tr>
                                             <td>{{ $category->id }}</td>
                                             <td>{{ $category->title }}</td>
+                                            <td>{{ $category->slug }}</td>
 {{--                                            <td>--}}
 {{--                                                <img src="{{ Storage::url($category->card_image) }}" height="50px" width="60px"--}}
 {{--                                                     style="border-radius: 50%" alt="IMAGE">--}}

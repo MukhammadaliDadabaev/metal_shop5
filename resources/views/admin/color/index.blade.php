@@ -51,6 +51,7 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Slug</th>
                                     <th>Ranglar</th>
                                 </tr>
                                 </thead>
@@ -58,6 +59,7 @@
                                 @foreach($colors as $color)
                                     <tr>
                                         <td>{{ $color->id }}</td>
+                                        <td>{{ $color->slug }}</td>
                                         <td>
                                             <div
                                                 style="width: 17px; height: 17px; background: {{ '#'. $color->title }}"></div>

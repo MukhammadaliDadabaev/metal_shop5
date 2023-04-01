@@ -16,13 +16,16 @@ class CategorySeeder extends Seeder
     public function run()
     {
         Category::create([
-            'title' => 'Avtomobil'
+            'title' => 'Avtomobil',
+            'slug' => 'Auto'
         ]);
         Category::create([
-            'title' => 'Valyuta'
+            'title' => 'Valyuta',
+            'slug' => 'Money'
         ]);
         Category::create([
-            'title' => 'Ekskiluzip'
+            'title' => 'Ekskiluzip',
+            'slug' => 'Class'
         ]);
     }
 }
