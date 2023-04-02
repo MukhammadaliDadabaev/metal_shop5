@@ -11,7 +11,7 @@ class TagController extends Controller
 {
     public function index()
     {
-        $tags = Tag::all();
+        $tags = Tag::paginate(5);
         return view('admin.tag.index', compact('tags'));
     }
 
@@ -23,9 +23,10 @@ class TagController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-        Tag::firstOrCreate($data);
+        Tag::create($data);
 
-        return redirect()->route('admin.tag.index');
+        return redirect()->route('admin.tag.index')
+            ->with('success', 'Tag saqlandi...😎');
     }
 
     public function edit(Tag $tag)
@@ -38,12 +39,14 @@ class TagController extends Controller
         $data = $request->validated();
         $tag->update($data);
 
-        return view('admin.tag.show', compact('tag'));
+        return redirect()->route('admin.tag.index')
+            ->with('success', 'O\'zgarish saqlandi...😎');
     }
 
     public function destroy(Tag $tag)
     {
         $tag->delete();
-        return redirect()->route('admin.tag.index');
+        return redirect()->route('admin.tag.index')
+            ->with('success', 'Tag o\'chirildi...😎');
     }
 }

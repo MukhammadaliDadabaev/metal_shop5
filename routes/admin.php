@@ -26,7 +26,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', [TagController::class, 'index'])->name('admin.tag.index');
         Route::get('/create', [TagController::class, 'create'])->name('admin.tag.create');
         Route::post('/', [TagController::class, 'store'])->name('admin.tag.store');
-        Route::get('/{tag}', [TagController::class, 'show'])->name('admin.tag.show');
+//        Route::get('/{tag}', [TagController::class, 'show'])->name('admin.tag.show');
         Route::get('/{tag}/edit', [TagController::class, 'edit'])->name('admin.tag.edit');
         Route::patch('/{tag}', [TagController::class, 'update'])->name('admin.tag.update');
         Route::delete('/{tag}', [TagController::class, 'destroy'])->name('admin.tag.destroy');

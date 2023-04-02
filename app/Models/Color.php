@@ -11,8 +11,7 @@ class Color extends Model
 {
     use HasFactory, Sluggable;
 
-    protected $table = 'colors';
-    protected $guarded = false;
+    protected $fillable = ['title'];
 
     //    --- PRODUCT-DA |
     //    1.ta --- PRODUCT-DA | KO'P --- COLOR BOR

@@ -7,18 +7,15 @@ use App\Http\Requests\Product\StoreRequest;
 use App\Http\Requests\Product\UpdateRequest;
 use App\Models\Category;
 use App\Models\Color;
-use App\Models\ColorProduct;
 use App\Models\Product;
-use App\Models\ProductTag;
 use App\Models\Tag;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(5);
         $categories = Category::all();
         $tags = Tag::all();
         return view('admin.product.index', compact('products', 'categories', 'tags'));
@@ -26,41 +23,29 @@ class ProductController extends Controller
 
     public function create()
     {
-        $tags = Tag::all();
-        $colors = Color::all();
-        $categories = Category::all();
+        $categories = Category::pluck('title', 'id')->all();
+        $tags = Tag::pluck('title', 'id')->all();
+        $colors = Color::pluck('title', 'id')->all();
 
-        return view('admin.product.create', compact('tags', 'colors', 'categories'));
+        return view('admin.product.create', compact('categories', 'tags', 'colors'));
     }
 
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-        $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
 
-        $tagsIds = $data['tags'];
-        $colorsIds = $data['colors'];
-        unset($data['tags'], $data['colorss']);
-
-        $product = Product::firstOrCreate([
-            'title' => $data['title'],
-        ], $data);
-
-        foreach ($tagsIds as $tagsId) {
-            ProductTag::firstOrCreate([
-                'product_id' => $product->id,
-                'tag_id' => $tagsId
-            ]);
+        if ($request->hasFile('preview_image')) {
+            $folder = date('Y-m-d');
+            $data['preview_image'] = $request->file('preview_image')
+                ->store('images/' . $folder);
         }
 
-        foreach ($colorsIds as $colorId) {
-            ColorProduct::firstOrCreate([
-                'product_id' => $product->id,
-                'color_id' => $colorId
-            ]);
-        }
+        $product = Product::create($data);
+        $product->tags()->sync($request->tags);
+        $product->colors()->sync($request->colors);
 
-        return redirect()->route('admin.product.index');
+        return redirect()->route('admin.product.index')
+            ->with('success', 'Product qushildi...😎');
     }
 
     public function edit(Product $product)

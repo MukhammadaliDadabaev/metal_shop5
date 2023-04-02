@@ -46,12 +46,14 @@
                                 </div>
                             </div>
                             <!-- /.card-header -->
+                            @if(count($tags))
                             <div class="card-body table-responsive p-0">
                                 <table class="table table-bordered table-hover text-nowrap">
                                     <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Tag</th>
+                                        <th>Slug</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
@@ -60,6 +62,7 @@
                                         <tr>
                                             <td>{{ $tag->id }}</td>
                                             <td>{{ $tag->title }}</td>
+                                            <td>{{ $tag->slug }}</td>
 
                                             <td>
                                                 <a class="btn btn-primary btn-sm float-left mr-2"
@@ -80,7 +83,11 @@
                                 </table>
                             </div>
                             <!-- /.card-body -->
+                            @else
+                                <h1 class="py-3 text-danger text-center">Tag Xozircha yo'q...❌</h1>
+                            @endif
                         </div>
+                        {{ $tags->links() }}
                     </div>
                 </div>
             </div><!-- /.container-fluid -->

@@ -11,8 +11,7 @@ class Tag extends Model
 {
     use HasFactory, Sluggable;
 
-    protected $table = 'tags';
-    protected $guarded = false;
+    protected $fillable = ['title'];
 
 //    KO'P-GA | KO'P
     public function products(): BelongsToMany
