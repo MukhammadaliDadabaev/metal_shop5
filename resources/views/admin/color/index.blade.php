@@ -90,6 +90,7 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
+                    {{ $colors->links() }}
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
