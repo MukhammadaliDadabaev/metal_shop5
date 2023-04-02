@@ -134,7 +134,7 @@
 {{--                                                   href="{{ route('$admin.product.show', $product) }}"><i--}}
 {{--                                                        class="far fa-eye"></i></a>--}}
 
-                                                <a class="btn btn-info btn-sm float-left mr-2"
+                                                <a class="btn btn-primary btn-sm float-left mr-2"
                                                    href="{{ route('$admin.product.edit', $product) }}">
                                                     <i class="fas fa-pencil-alt"></i></a>
 

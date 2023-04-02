@@ -24,8 +24,61 @@ class ColorSeeder extends Seeder
             'slug' => 'Orange'
         ]);
         Color::create([
-            'title' => 'C29142',
+            'title' => 'FFFF00',
+            'slug' => 'Yellow'
+        ]);
+        Color::create([
+            'title' => 'FF0000',
+            'slug' => 'Red'
+        ]);
+        Color::create([
+            'title' => '008000',
+            'slug' => 'Green'
+        ]);
+        Color::create([
+            'title' => '808000',
+            'slug' => 'Olive'
+        ]);
+        Color::create([
+            'title' => '00FF00',
+            'slug' => 'Lime'
+        ]);
+        Color::create([
+            'title' => 'FFC0CB',
+            'slug' => 'Pink'
+        ]);
+        Color::create([
+            'title' => '00FFFF',
+            'slug' => 'Cyan'
+        ]);
+        Color::create([
+            'title' => 'FF00FF',
+            'slug' => 'Magenta'
+        ]);
+        Color::create([
+            'title' => 'F69C63',
+            'slug' => 'Warning'
+        ]);
+        Color::create([
+            'title' => '0000FF',
             'slug' => 'Blue'
+        ]);
+        Color::create([
+            'title' => '251a6b',
+            'slug' => 'Success'
+        ]);
+        Color::create([
+            'title' => 'd3d33f',
+            'slug' => 'Info'
         ]);
     }
 }
+
+
+
+
+
+
+
+
+

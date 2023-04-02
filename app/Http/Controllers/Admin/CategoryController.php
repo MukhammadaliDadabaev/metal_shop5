@@ -12,7 +12,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::paginate(2);
+        $categories = Category::paginate(5);
         return view('admin.category.index', compact('categories'));
     }
 
@@ -24,9 +24,10 @@ class CategoryController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-        Category::firstOrCreate($data);
+        Category::create($data);
 
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.category.index')
+            ->with('success', 'Categoriya qushildi...😎');
     }
 
     public function edit(Category $category)
@@ -37,14 +38,18 @@ class CategoryController extends Controller
     public function update(UpdateRequest $request, Category $category)
     {
         $data = $request->validated();
+
+        $category->slug = null;
         $category->update($data);
 
-        return view('admin.category.show', compact('category'));
+        return redirect()->route('admin.category.index')
+            ->with('success', 'O\'zgarish saqlandi...😎');
     }
 
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.category.index')
+            ->with('success', 'Categoriya o\'chirildi...😎');
     }
 }

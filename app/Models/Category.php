@@ -11,8 +11,7 @@ class Category extends Model
 {
     use HasFactory, Sluggable;
 
-    protected $table = 'categories';
-    protected $guarded = false;
+    protected $fillable = ['title'];
 
 //    1-CATEGORY-DA | KO'P-PRODUCT BOR
     public function products(): HasMany

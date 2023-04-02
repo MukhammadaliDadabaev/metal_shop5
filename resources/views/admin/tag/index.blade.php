@@ -62,18 +62,14 @@
                                             <td>{{ $tag->title }}</td>
 
                                             <td>
-{{--                                                <a class="btn btn-dark btn-sm"--}}
-{{--                                                   href="{{ route('admin.tag.show', $tag) }}"><i--}}
-{{--                                                        class="far fa-eye"></i></a>--}}
-
-                                                <a class="btn btn-info btn-sm float-left mr-2"
+                                                <a class="btn btn-primary btn-sm float-left mr-2"
                                                    href="{{ route('admin.tag.edit', $tag) }}">
                                                     <i class="fas fa-pencil-alt"></i></a>
 
                                                 <form action="{{ route('admin.tag.destroy', $tag) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit"  class="btn btn-danger btn-sm" onclick="return confirm('Подтвердие удаление')">
+                                                    <button type="submit"  class="btn btn-danger btn-sm" onclick="return confirm('O\'chirishni tasdiqlang')">
                                                         <i class="fas fa-trash-alt" role="button"></i>
                                                     </button>
                                                 </form>
