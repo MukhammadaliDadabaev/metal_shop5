@@ -36,9 +36,16 @@ class ProductController extends Controller
 
         if ($request->hasFile('preview_image')) {
             $folder = date('Y-m-d');
-            $data['preview_image'] = $request->file('preview_image')
-                ->store('images/' . $folder);
+            $data['preview_image'] = $request->file('preview_image')->storeAs(
+                'images/' . $folder, $request->file('preview_image')->getClientOriginalName()
+            );
         }
+
+//        if ($request->hasFile('preview_image')) {
+//            $folder = date('Y-m-d');
+//           $data['preview_image'] = $request->file('preview_image')
+//                ->store('images/' . $folder);
+//        }
 
         $product = Product::create($data);
         $product->tags()->sync($request->tags);
