@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Http\Requests\Product\StoreRequest;
+use App\Http\Requests\Product\UpdateRequest;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
@@ -47,4 +50,28 @@ class Product extends Model
             ]
         ];
     }
+
+    public static function uploadFile(StoreRequest $request, $image = null)
+    {
+        if ($request->hasFile('preview_image')) {
+            if ($image) {
+                Storage::delete($image);
+            }
+            $imageName = $request->file('preview_image')->getClientOriginalName();
+            return $request->file('preview_image')->storeAs('images', $imageName);
+        }
+        return null;
+    }
+
+//    public static function updateFile(UpdateRequest $request)
+//    {
+//        if ($request->hasFile('preview_image')) {
+//            Storage::delete($request);
+//            $imageName = $request->file('preview_image')->getClientOriginalName();
+//            return $request->file('preview_image')->storeAs('images', $imageName);
+//        }
+//        return null;
+//    }
+
+
 }

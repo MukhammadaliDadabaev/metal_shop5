@@ -10,6 +10,7 @@ use App\Models\Color;
 use App\Models\Product;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -33,19 +34,7 @@ class ProductController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-
-        if ($request->hasFile('preview_image')) {
-            $folder = date('Y-m-d');
-            $imageName = $request->file('preview_image')->getClientOriginalName();
-            $data['preview_image'] = $request->file('preview_image')
-                ->storeAs('images/' . $folder, $imageName);
-        }
-
-//        if ($request->hasFile('preview_image')) {
-//            $folder = date('Y-m-d');
-//           $data['preview_image'] = $request->file('preview_image')
-//                ->store('images/' . $folder);
-//        }
+        $data['preview_image'] = Product::uploadFile($request);
 
         $product = Product::create($data);
         $product->tags()->sync($request->tags);
@@ -57,15 +46,24 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        return view('admin.product.edit', compact('product'));
+        $categories = Category::pluck('title', 'id')->all();
+        $tags = Tag::pluck('title', 'id')->all();
+        $colors = Color::pluck('title', 'id')->all();
+
+        return view('admin.product.edit', compact('categories', 'tags', 'colors', 'product'));
     }
 
-    public function update(UpdateRequest $request, Product $product)
+    public function update(StoreRequest $request, Product $product)
     {
         $data = $request->validated();
-        $product->update($data);
+        $data['preview_image'] = Product::uploadFile($request, $product->preview_image);
 
-        return view('admin.product.show', compact('product'));
+        $product->update($data);
+        $product->tags()->sync($request->tags);
+        $product->colors()->sync($request->colors);
+
+        return redirect()->route('admin.product.index')
+            ->with('success', 'O\'zgarish saqlandi...😎');
     }
 
     public function destroy(Product $product)
