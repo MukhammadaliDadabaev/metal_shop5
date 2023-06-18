@@ -111,7 +111,7 @@
                     <div class="row">
                         <div class="menu-info d-flex justify-content-between align-items-center">
                             <div class="menubar"><span></span> <span></span> <span></span></div>
-                            <a href="index.html" class="logo">
+                            <a href="/" class="logo">
                                 <h2>METAL-CART</h2>
 {{--                                <img src="{{ asset('assets/images/logo/logo-6.png') }}" alt=""> --}}
                             </a>
@@ -153,7 +153,7 @@
                                     <i class="flaticon-phone"></i>
                                 </span>
                             <span>
-                                    (+99) 890 5967757
+                                    (+99) 891 180-60-17
                                 </span>
                         </a>
                     </div>
